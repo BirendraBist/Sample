@@ -64,9 +64,9 @@ function DeleteData():void{
                 // the request was made and the server responded with a status code
                 // that falls out of the range of 2xx
                 // https://kapeli.com/cheat_sheets/Axios.docset/Contents/Resources/Documents/index
-                output.innerHTML = error;
+                output.innerHTML = error.message;
             } else { // something went wrong in the .then block?
-                output.innerHTML = error;
+                output.innerHTML = error.message;
             }
         });
 }
