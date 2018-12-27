@@ -22,8 +22,8 @@ function Showtable():void{
     console.log(data);
     let result: string = json2table100(response.data);
     console.log(result);
-    let element: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
-    element.innerHTML = result;
+    let getElement: HTMLDivElement = <HTMLDivElement>document.getElementById("content");
+    getElement.innerHTML = result;
 })
 .catch(function (error: AxiosError): void {
     console.log(JSON.stringify(error));
