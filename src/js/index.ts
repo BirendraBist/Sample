@@ -5,6 +5,7 @@ import axios, {
 
 import { json2table100 } from "./generictable";
 
+
 interface ISample{
     Id : number;
     Name:string;
@@ -27,6 +28,7 @@ function Showtable():void{
 .catch(function (error: AxiosError): void {
     console.log(JSON.stringify(error));
 })};
+
 let Addbutton:HTMLButtonElement=<HTMLButtonElement>document.getElementById("add");
 Addbutton.addEventListener("click",AddData);
 
@@ -70,3 +72,23 @@ function DeleteData():void{
             }
         });
 }
+let ByIdElement:HTMLButtonElement=<HTMLButtonElement>document.getElementById("getById");
+ ByIdElement.addEventListener("click",getbyid);
+  function getbyid():void{
+    let inputIdElement: HTMLInputElement=<HTMLInputElement>document.getElementById("inputId");
+    // let outputResultElement:HTMLDivElement=<HTMLDivElement>document.getElementById("outputResult");
+    let Id:number=Number(inputIdElement.value);
+    let uri: string = "https://webapplication20181226114109.azurewebsites.net/api/samples/" + Id;
+    axios.get<ISample[]>(uri)
+    .then(function (response: AxiosResponse<ISample[]>): void {
+        let data: ISample[] = response.data;
+       console.log(data);
+       let result: string = json2table100(response.data);
+       console.log(result);
+    let outputResultElement: HTMLDivElement = <HTMLDivElement>document.getElementById("outputResult");
+       outputResultElement.innerHTML = result;
+   })
+   .catch(function (error: AxiosError): void {
+       console.log(JSON.stringify(error));
+   })};
+  
