@@ -1,15 +1,11 @@
-$fontColor: #0091aa;
-$colorHeading: #be4a14;
-#content  // div with id: content
-{
-    color: $fontColor;
+#outputResult{
+    color:red;
 }
-
-h2
-{
-    color: $colorHeading;
+#content{
+    border: 2em;
+    border-color: black;
 }
-
-h1{
-    @extend h2;
-}
+table{
+    border: 2em;
+    border-color: red;
+    }

@@ -7,10 +7,10 @@ import { json2table100 } from "./generictable";
 
 
 interface ISample{
-    Id : number;
-    Name:string;
-    Age:number;
-    DateTime:string;
+    id : number;
+    name:string;
+    age:number;
+    dateTime:string;
 }
 let buttonElement: HTMLButtonElement=<HTMLButtonElement>document.getElementById("getAll");
 buttonElement.addEventListener("click",Showtable);
@@ -79,14 +79,15 @@ let ByIdElement:HTMLButtonElement=<HTMLButtonElement>document.getElementById("ge
     // let outputResultElement:HTMLDivElement=<HTMLDivElement>document.getElementById("outputResult");
     let Id:number=Number(inputIdElement.value);
     let uri: string = "https://webapplication20181226114109.azurewebsites.net/api/samples/" + Id;
-    axios.get<ISample[]>(uri)
-    .then(function (response: AxiosResponse<ISample[]>): void {
-        let data: ISample[] = response.data;
+    axios.get<ISample>(uri)
+    .then(function (response: AxiosResponse<ISample>): void {
+        let data: ISample = response.data;
        console.log(data);
-       let result: string = json2table100(response.data);
+    //    let result: string = JSON.stringify(response.data);
+    let result: string = data.id+" "+data.name+" "+ data.age +"   "+ data.dateTime;
        console.log(result);
     let outputResultElement: HTMLDivElement = <HTMLDivElement>document.getElementById("outputResult");
-       outputResultElement.innerHTML = result;
+     outputResultElement.innerHTML = result;
    })
    .catch(function (error: AxiosError): void {
        console.log(JSON.stringify(error));
